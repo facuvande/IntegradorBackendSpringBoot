@@ -19,22 +19,23 @@ public class ProductoService implements IProductoService{
 
     @Override
     public List<Producto> getProducts() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Producto> myProducts = productRepository.findAll();
+        return myProducts;
     }
 
     @Override
-    public void save(Producto product) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Producto save(Producto product) {
+        return productRepository.save(product);
     }
 
     @Override
-    public String deleteById(Long code) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void deleteById(Long code) {
+        productRepository.deleteById(code);
     }
 
     @Override
     public Producto editProduct(Producto product) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.save(product);
     }
     
 }

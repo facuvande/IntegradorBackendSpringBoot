@@ -10,9 +10,9 @@ public interface IProductoService {
     // Traer todos los productos
     public List<Producto> getProducts();
     // Creacion
-    public void save(Producto product);
+    public Producto save(Producto product);
     // Eliminacion
-    public String deleteById(Long code);
+    public void deleteById(Long code);
     // Edicion
     public Producto editProduct(Producto product);
     
