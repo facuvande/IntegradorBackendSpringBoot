@@ -1,6 +1,7 @@
 package com.facuvande.integrador.service;
 
 import com.facuvande.integrador.model.Producto;
+import com.facuvande.integrador.repository.IProductoRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +10,11 @@ import org.springframework.stereotype.Service;
 public class ProductoService implements IProductoService{
 
     @Autowired
+    private IProductoRepository productRepository;
     
     @Override
     public Producto getProductById(Long code) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return productRepository.findById(code).orElse(null);
     }
 
     @Override
