@@ -43,8 +43,13 @@ public class ProductoController {
     }
     
     @PutMapping("/productos/editar/{code}")
-    public Producto editProduct(@PathVariable Long code){
+    public Producto editProduct(@PathVariable Long code, @RequestBody Producto newProduct){
         Producto productToEdit = this.getProductById(code);
+        productToEdit.setNombre(newProduct.getNombre());        
+        productToEdit.setMarca(newProduct.getMarca());
+        productToEdit.setCosto(newProduct.getCosto());
+        productToEdit.setCantidad_disponible(newProduct.getCantidad_disponible());
+
         return productService.editProduct(productToEdit);
     }
 }
