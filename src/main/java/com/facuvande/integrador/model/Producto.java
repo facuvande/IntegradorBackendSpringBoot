@@ -1,9 +1,11 @@
 package com.facuvande.integrador.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +21,7 @@ public class Producto {
     private Double costo;
     private Double cantidad_disponible;
 
+    
     public Producto() {
     }
 
