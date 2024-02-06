@@ -18,7 +18,7 @@ public class ClienteService implements IClienteService{
     }
 
     @Override
-    public List<Cliente> getClient() {
+    public List<Cliente> getClients() {
         return clientRepo.findAll();
     }
 

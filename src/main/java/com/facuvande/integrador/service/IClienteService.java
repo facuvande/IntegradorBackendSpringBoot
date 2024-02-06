@@ -9,7 +9,7 @@ public interface IClienteService {
     public Cliente getClientById(Long code);
     
     // Traer todos los clientes
-    public List<Cliente> getClient();
+    public List<Cliente> getClients();
     
     // Creacion
     public Cliente save(Cliente clien);
