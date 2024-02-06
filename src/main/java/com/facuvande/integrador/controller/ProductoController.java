@@ -31,18 +31,18 @@ public class ProductoController {
     }
     
     // Traer producto en particular
-    @GetMapping("/productos/{codigo_producto}")
+    @GetMapping("/productos/{code}")
     public Producto getProductById(@PathVariable Long code){
         return productService.getProductById(code);
     }
     
     // Eliminacion
-    @DeleteMapping("/productos/eliminar/{codigo_producto}")
+    @DeleteMapping("/productos/eliminar/{code}")
     public void deleteProduct(@PathVariable Long code){
         productService.deleteById(code);
     }
     
-    @PutMapping("/productos/editar/{codigo_producto}")
+    @PutMapping("/productos/editar/{code}")
     public Producto editProduct(@PathVariable Long code){
         Producto productToEdit = this.getProductById(code);
         return productService.editProduct(productToEdit);
