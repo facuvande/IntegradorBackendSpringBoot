@@ -1,6 +1,8 @@
 package com.facuvande.integrador.service;
 
+import com.facuvande.integrador.model.Producto;
 import com.facuvande.integrador.model.Venta;
+import com.facuvande.integrador.repository.IProductoRepository;
 import com.facuvande.integrador.repository.IVentaRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,9 @@ public class VentaService implements IVentaService{
 
     @Autowired
     private IVentaRepository saleRepository;
+    
+    @Autowired
+    private IProductoRepository productRepository;
     
     @Override
     public Venta getSaleById(Long code) {
@@ -24,6 +29,21 @@ public class VentaService implements IVentaService{
 
     @Override
     public Venta save(Venta sale) {
+        
+        List<Producto> productsToSale = sale.getListaProductos();
+        
+        for(Producto prod : productsToSale){
+            if(prod.getCantidad_disponible() <= 0){
+                return null;
+            }else{
+                
+                Producto product = productRepository.findById(prod.getCodigo_producto()).orElse(null);
+                product.setCantidad_disponible(product.getCantidad_disponible() - 1);
+                productRepository.save(product);
+                
+                return saleRepository.save(sale);
+            }
+        }
         return saleRepository.save(sale);
     }
 
