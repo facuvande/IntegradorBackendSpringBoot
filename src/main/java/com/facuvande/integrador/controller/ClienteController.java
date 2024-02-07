@@ -50,7 +50,7 @@ public class ClienteController {
         clientToEdit.setDni(newClient.getDni());
         clientToEdit.setApellido(newClient.getApellido());
 
-        return clienServ.editClient(newClient);
+        return clienServ.editClient(clientToEdit);
     }
     
 }
