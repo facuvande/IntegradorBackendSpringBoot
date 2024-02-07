@@ -6,18 +6,18 @@ import java.util.List;
 public interface IVentaService {
     
      // Traer una venta por id
-    public Venta getPurchaseById(Long code);
+    public Venta getSaleById(Long code);
     
     // Traer todas las ventas
-    public List<Venta> getPurchases();
+    public List<Venta> getSales();
     
     // Creacion
-    public Venta save(Venta purch);
+    public Venta save(Venta sale);
     
     // Eliminacion
     public void deleteById(Long code);
     
     // Edicion
-    public Venta editPurchase(Venta purch);
+    public Venta editSale(Venta sale);
     
 }
