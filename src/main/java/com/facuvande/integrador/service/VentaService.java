@@ -33,15 +33,12 @@ public class VentaService implements IVentaService{
         List<Producto> productsToSale = sale.getListaProductos();
         
         for(Producto prod : productsToSale){
-            if(prod.getCantidad_disponible() <= 0){
+            Producto prodVenta = productRepository.findById(prod.getCodigo_producto()).orElse(null);
+            if(prodVenta.getCantidad_disponible() <= 0){
                 return null;
             }else{
-                
-                Producto product = productRepository.findById(prod.getCodigo_producto()).orElse(null);
-                product.setCantidad_disponible(product.getCantidad_disponible() - 1);
-                productRepository.save(product);
-                
-                return saleRepository.save(sale);
+                prodVenta.setCantidad_disponible(prodVenta.getCantidad_disponible() - 1);
+                productRepository.save(prodVenta);
             }
         }
         return saleRepository.save(sale);

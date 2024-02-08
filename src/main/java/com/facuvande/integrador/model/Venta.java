@@ -21,6 +21,7 @@ public class Venta {
     private Double total;
     @OneToMany
     private List<Producto> listaProductos;
+    // TODO ACOMODAR RELACION TIENE QUE SER MANY TO ONE
     @OneToOne
     private Cliente unCliente;
 
