@@ -4,8 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.Getter;
@@ -19,10 +21,17 @@ public class Venta {
     private Long codigo_venta;
     private LocalDate fecha_venta;
     private Double total;
-    @OneToMany
+    
+    @ManyToMany
+    @JoinTable(
+            name="productos_venta",
+            joinColumns = @JoinColumn(name="venta_id"),
+            inverseJoinColumns= @JoinColumn(name="producto_id")
+    )
     private List<Producto> listaProductos;
     // TODO ACOMODAR RELACION TIENE QUE SER MANY TO ONE
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name="codigo_cliente")
     private Cliente unCliente;
 
     public Venta() {
