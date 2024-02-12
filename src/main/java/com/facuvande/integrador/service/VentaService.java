@@ -4,6 +4,7 @@ import com.facuvande.integrador.model.Producto;
 import com.facuvande.integrador.model.Venta;
 import com.facuvande.integrador.repository.IProductoRepository;
 import com.facuvande.integrador.repository.IVentaRepository;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,6 +59,22 @@ public class VentaService implements IVentaService{
     public List<Producto> getProductBySale(Long code) {
         Venta mySale = this.getSaleById(code);
         return mySale.getListaProductos();
+    }
+
+    @Override
+    public String getDataSales(LocalDate sale) {
+        List<Venta> mySales = this.getSales();
+        int quantitySales = 0;
+        int ammountTotal = 0;
+        
+        for(Venta sales : mySales){
+            if(sales.getFecha_venta().equals(sale)){
+                quantitySales++;
+                ammountTotal += sales.getTotal();
+            }
+        }
+        
+        return "Fecha Ventas: " + sale + "\n" + "Cantidad de ventas: " + quantitySales + "\n" + "Monto total: " + ammountTotal;
     }
     
 }

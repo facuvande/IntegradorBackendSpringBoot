@@ -3,8 +3,10 @@ package com.facuvande.integrador.controller;
 import com.facuvande.integrador.model.Producto;
 import com.facuvande.integrador.model.Venta;
 import com.facuvande.integrador.service.IVentaService;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,5 +62,11 @@ public class VentaController {
     @GetMapping("/ventas/productos/{code}")
     public List<Producto> getProductsBySale(@PathVariable Long code){
         return saleService.getProductBySale(code);
+    }
+    
+    // Traer sumatoria de monto y cantidad total de ventas de un dia
+    @GetMapping("/ventas/fecha/{fecha_venta}")
+    public String getDataSales(@PathVariable LocalDate fecha_venta){
+        return saleService.getDataSales(fecha_venta);
     }
 }

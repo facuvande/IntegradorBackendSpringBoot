@@ -2,6 +2,7 @@ package com.facuvande.integrador.service;
 
 import com.facuvande.integrador.model.Producto;
 import com.facuvande.integrador.model.Venta;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IVentaService {
@@ -24,4 +25,6 @@ public interface IVentaService {
     // Traer productos de venta
     public List<Producto> getProductBySale(Long code);
     
+    // Obtener sumatoria del monto y cantidad total de ventas de determinado dia
+    public String getDataSales(LocalDate sale);
 }
