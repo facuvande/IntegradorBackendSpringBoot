@@ -1,5 +1,6 @@
 package com.facuvande.integrador.controller;
 
+import com.facuvande.integrador.dto.MayorVentaDTO;
 import com.facuvande.integrador.model.Producto;
 import com.facuvande.integrador.model.Venta;
 import com.facuvande.integrador.service.IVentaService;
@@ -68,5 +69,11 @@ public class VentaController {
     @GetMapping("/ventas/fecha/{fecha_venta}")
     public String getDataSales(@PathVariable LocalDate fecha_venta){
         return saleService.getDataSales(fecha_venta);
+    }
+    
+    // Traer data mayor venta
+    @GetMapping("/ventas/mayor_venta")
+    public MayorVentaDTO getSaleWithHighestAmountDetails(){
+        return saleService.getSaleWithHighestAmountDetails();
     }
 }

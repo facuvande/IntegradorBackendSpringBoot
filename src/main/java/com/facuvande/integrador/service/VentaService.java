@@ -1,10 +1,12 @@
 package com.facuvande.integrador.service;
 
+import com.facuvande.integrador.dto.MayorVentaDTO;
 import com.facuvande.integrador.model.Producto;
 import com.facuvande.integrador.model.Venta;
 import com.facuvande.integrador.repository.IProductoRepository;
 import com.facuvande.integrador.repository.IVentaRepository;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,6 +77,33 @@ public class VentaService implements IVentaService{
         }
         
         return "Fecha Ventas: " + sale + "\n" + "Cantidad de ventas: " + quantitySales + "\n" + "Monto total: " + ammountTotal;
+    }
+
+    @Override
+    public MayorVentaDTO getSaleWithHighestAmountDetails() {
+        List<Venta> mySales = this.getSales();
+        Venta highSale = null;
+        
+        Double total = 0.0;
+        
+        for(Venta sale : mySales){
+            if(sale.getTotal() > total){
+                total = sale.getTotal();
+                highSale = sale;
+            }
+        }
+        
+        List<Producto> productsToSale = this.getProductBySale(highSale.getCodigo_venta());
+        
+        
+        MayorVentaDTO myDTO = new MayorVentaDTO();
+        myDTO.setApellido_cliente(highSale.getUnCliente().getApellido());
+        myDTO.setCantidad_productos(productsToSale.size());
+        myDTO.setCodigo_venta(highSale.getCodigo_venta());
+        myDTO.setNombre_cliente(highSale.getUnCliente().getNombre());
+        myDTO.setTotal(total);
+        
+        return myDTO;
     }
     
 }

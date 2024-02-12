@@ -1,5 +1,6 @@
 package com.facuvande.integrador.service;
 
+import com.facuvande.integrador.dto.MayorVentaDTO;
 import com.facuvande.integrador.model.Producto;
 import com.facuvande.integrador.model.Venta;
 import java.time.LocalDate;
@@ -27,4 +28,7 @@ public interface IVentaService {
     
     // Obtener sumatoria del monto y cantidad total de ventas de determinado dia
     public String getDataSales(LocalDate sale);
+    
+    // Obtener datos mayor venta
+    public MayorVentaDTO getSaleWithHighestAmountDetails();
 }
