@@ -1,5 +1,6 @@
 package com.facuvande.integrador.service;
 
+import com.facuvande.integrador.model.Producto;
 import com.facuvande.integrador.model.Venta;
 import java.util.List;
 
@@ -19,5 +20,8 @@ public interface IVentaService {
     
     // Edicion
     public Venta editSale(Venta sale);
+    
+    // Traer productos de venta
+    public List<Producto> getProductBySale(Long code);
     
 }

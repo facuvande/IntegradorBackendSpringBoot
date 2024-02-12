@@ -1,5 +1,6 @@
 package com.facuvande.integrador.controller;
 
+import com.facuvande.integrador.model.Producto;
 import com.facuvande.integrador.model.Venta;
 import com.facuvande.integrador.service.IVentaService;
 import java.util.List;
@@ -42,6 +43,7 @@ public class VentaController {
         saleService.deleteById(code);
     }
     
+    // Edicion
     @PutMapping("/ventas/editar/{code}")
     public Venta editSale(@PathVariable Long code, @RequestBody Venta newSale){
         Venta saleToEdit = this.getSaleById(code);
@@ -54,4 +56,9 @@ public class VentaController {
         return saleService.editSale(saleToEdit);
     }
     
+    // Traer productos de venta
+    @GetMapping("/ventas/productos/{code}")
+    public List<Producto> getProductsBySale(@PathVariable Long code){
+        return saleService.getProductBySale(code);
+    }
 }

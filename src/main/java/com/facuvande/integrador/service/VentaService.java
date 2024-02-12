@@ -53,5 +53,11 @@ public class VentaService implements IVentaService{
     public Venta editSale(Venta sale) {
         return saleRepository.save(sale);
     }
+
+    @Override
+    public List<Producto> getProductBySale(Long code) {
+        Venta mySale = this.getSaleById(code);
+        return mySale.getListaProductos();
+    }
     
 }
