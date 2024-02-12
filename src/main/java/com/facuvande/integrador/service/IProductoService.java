@@ -15,5 +15,6 @@ public interface IProductoService {
     public void deleteById(Long code);
     // Edicion
     public Producto editProduct(Producto product);
-    
+    // Traer productos cuya cantidad_disponible sea menor a 5
+    public List<Producto> getProductsLowStock();
 }

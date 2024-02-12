@@ -2,6 +2,7 @@ package com.facuvande.integrador.service;
 
 import com.facuvande.integrador.model.Producto;
 import com.facuvande.integrador.repository.IProductoRepository;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,19 @@ public class ProductoService implements IProductoService{
     @Override
     public Producto editProduct(Producto product) {
         return this.save(product);
+    }
+
+    @Override
+    public List<Producto> getProductsLowStock() {
+        List<Producto> myProducts = this.getProducts();
+        List<Producto> listProductsLowStock = new ArrayList<>();
+        for(Producto prod : myProducts){
+            if(prod.getCantidad_disponible() < 5){
+                listProductsLowStock.add(prod);
+            }
+        }
+        
+        return listProductsLowStock;
     }
     
 }
